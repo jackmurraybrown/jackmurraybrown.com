@@ -1,5 +1,21 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+// Import homepage images
+import jackSwimImg from "../../public/images/homepage/jack-swim.jpg";
+import refugeImg from "../../public/images/homepage/refuge.png";
+import toolkittyImg from "../../public/images/homepage/toolkitty.jpg";
+import fae4Img from "../../public/images/homepage/fae4.jpg";
+import communityArchivesImg from "../../public/images/homepage/community-archives.jpg";
+import metagovImg from "../../public/images/homepage/metagov.png";
+import ex644Img from "../../public/images/homepage/ex-644.jpg";
+import norbergImg from "../../public/images/homepage/norberg.jpg";
+import gutsImg from "../../public/images/homepage/guts.jpg";
+import fruitfulImg from "../../public/images/homepage/fruitful.jpg";
+import freeformImg from "../../public/images/homepage/freeform.jpg";
+import comeInPeaceImg from "../../public/images/homepage/come-in-peace.jpg";
+import aerialImg from "../../public/images/homepage/aerial.jpg";
 ---
 
 <Layout>
@@ -15,7 +31,7 @@ import Layout from '../layouts/Layout.astro';
       <img
         width="1192"
         height="460"
-        class="hidden lg:block xl:-mb-16 2xl:-mb-72 max-w-screen-xl mx-auto"
+        class="hidden lg:block xl:-mb-16 2xl:-mb-72 max-w-full mx-auto"
         src="/JMB.svg"
         alt="Jack Murray-Brown"
       />
@@ -30,10 +46,8 @@ import Layout from '../layouts/Layout.astro';
           Currently based in Berlin.
         </p>
         <figure class="mb-0 relative">
-          <img
-            height="414"
-            width="273"
-            src="/images/homepage/antivirus-pichi_kk6r4v.jpg"
+          <Image
+            src={jackSwimImg}
             alt="Jack Murray-Brown just before a swim in the North Sea"
             loading="lazy"
           />
@@ -43,8 +57,9 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <h2 class="italic mb-4">Seriously selected work!</h2>
-    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-24 lg:mb-0 md:gap-x-6 md:gap-y-12">
-
+    <div
+      class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-24 lg:mb-0 md:gap-x-6 md:gap-y-12"
+    >
       <article>
         <a
           href="https://refugeworldwide.com/"
@@ -54,11 +69,12 @@ import Layout from '../layouts/Layout.astro';
           style="background-color: #fd8d7e"
         >
           <div class="relative">
-            <span class="absolute top-4 left-4 border-black border p-2" style="background-color: #fd8d7e">Current</span>
-            <img
-              height="500"
-              width="500"
-              src="/images/homepage/Screenshot_2023-05-18_at_17.57.07_qdk8a7.png"
+            <span
+              class="absolute top-4 left-4 border-black border p-2"
+              style="background-color: #fd8d7e">Current</span
+            >
+            <Image
+              src={refugeImg}
               alt="Refuge Worldwide website showing a radio show listing page"
               loading="lazy"
             />
@@ -81,18 +97,20 @@ import Layout from '../layouts/Layout.astro';
           style="background-color: #C5E2ED"
         >
           <div class="relative">
-            <span class="absolute top-4 left-4 border-black border p-2" style="background-color: #C5E2ED">Current</span>
-            <img
-              height="500"
-              width="500"
-              src="/images/homepage/Screenshot_2025-04-14_at_12.30.31-pichi_tl2tu4.jpg"
+            <span
+              class="absolute top-4 left-4 border-black border p-2"
+              style="background-color: #C5E2ED">Current</span
+            >
+            <Image
+              src={toolkittyImg}
               alt="Toolkitty app interface showing a collective coordination dashboard"
               loading="lazy"
             />
           </div>
           <div class="p-4">
             <h3 class="m-0">
-              Toolkitty — P2P coordination app for collectives, organisers and venues.
+              Toolkitty — P2P coordination app for collectives, organisers and
+              venues.
             </h3>
           </div>
         </a>
@@ -107,10 +125,8 @@ import Layout from '../layouts/Layout.astro';
           style="background-color: #E3D6F4"
         >
           <div class="relative">
-            <img
-              height="500"
-              width="500"
-              src="/images/homepage/fae4_lg3ryn.jpg"
+            <Image
+              src={fae4Img}
               alt="Serpentine Galleries Future Art Ecosystems 4 publication cover"
               loading="lazy"
             />
@@ -132,10 +148,8 @@ import Layout from '../layouts/Layout.astro';
           style="background-color: #98DC89"
         >
           <div class="relative">
-            <img
-              height="500"
-              width="500"
-              src="/images/homepage/community_archives_svzx3d.jpg"
+            <Image
+              src={communityArchivesImg}
               alt="Community archives workshop materials and notes"
               loading="lazy"
             />
@@ -157,12 +171,11 @@ import Layout from '../layouts/Layout.astro';
           style="background-color: #99B6BA"
         >
           <div class="relative">
-            <img
-              height="500"
-              width="500"
-              src="/images/homepage/metagov_logo_jrm89m.png"
+            <Image
+              src={metagovImg}
               alt="Metagov logo — an interdisciplinary research collective"
               loading="lazy"
+              class="w-full"
             />
           </div>
           <div class="p-4">
@@ -183,10 +196,8 @@ import Layout from '../layouts/Layout.astro';
           class="border-me homepage-item"
           style="background-color: #CFB687"
         >
-          <img
-            height="500"
-            width="500"
-            src="https://imgproxy.ra.co/_/quality:66/w:1200/rt:fill/aHR0cHM6Ly9zdGF0aWMucmEuY28vaW1hZ2VzL3BvZGNhc3QvZXhjaGFuZ2UvZXg2NDQtY292ZXIuanBn"
+          <Image
+            src={ex644Img}
             alt="EX.644 Source Material: Scottish Music's Mythic Imaginary exchange cover art"
             loading="lazy"
           />
@@ -200,28 +211,33 @@ import Layout from '../layouts/Layout.astro';
       </article>
 
       <article>
-        <a href="/work/norbergfestival-radio" class="border-me homepage-item" style="background-color: #8BD3E6">
-          <img
-            width="380"
-            height="448"
-            src="/images/homepage/R1-08651-0001_imxtor.jpg"
+        <a
+          href="/work/norbergfestival-radio"
+          class="border-me homepage-item"
+          style="background-color: #8BD3E6"
+        >
+          <Image
+            src={norbergImg}
             alt="A person plays guitar inside a transparent bubble with sun light glistening down"
             loading="lazy"
           />
           <div class="p-4">
             <h3 class="m-0">
-              Co-ordinating the radio station at the 21st edition of Norbergfestival.
+              Co-ordinating the radio station at the 21st edition of
+              Norbergfestival.
             </h3>
           </div>
         </a>
       </article>
 
       <article>
-        <a href="/work/guts" class="border-me homepage-item" style="background-color: #F6D4FE">
-          <img
-            width="380"
-            height="428"
-            src="/images/homepage/GUTS-1622_t4ktnx.jpg"
+        <a
+          href="/work/guts"
+          class="border-me homepage-item"
+          style="background-color: #F6D4FE"
+        >
+          <Image
+            src={gutsImg}
             alt="TV with 3D wobbly text reading GUTS is attached to a steel truss"
             loading="lazy"
           />
@@ -235,11 +251,13 @@ import Layout from '../layouts/Layout.astro';
       </article>
 
       <article>
-        <a href="/work/fruitful-fm" class="border-me homepage-item" style="background-color: #91CC8F">
-          <img
-            width="380"
-            height="342"
-            src="/images/homepage/TERRA_INCOGNITA-5937_vcyz6z.jpg"
+        <a
+          href="/work/fruitful-fm"
+          class="border-me homepage-item"
+          style="background-color: #91CC8F"
+        >
+          <Image
+            src={fruitfulImg}
             alt="A blurred plum is held in front of a greenhouse with vinyl reading Fruitful.FM visible"
             loading="lazy"
           />
@@ -253,11 +271,13 @@ import Layout from '../layouts/Layout.astro';
       </article>
 
       <article>
-        <a href="/work/freeform-radio-directory" class="border-me homepage-item" style="background-color: #E69F8B">
-          <img
-            width="380"
-            height="214"
-            src="/images/homepage/freeform-1-pichi-1_aepygs.jpg"
+        <a
+          href="/work/freeform-radio-directory"
+          class="border-me homepage-item"
+          style="background-color: #E69F8B"
+        >
+          <Image
+            src={freeformImg}
             alt="Website homepage for Freeform Radio Directory in a mocked-up browser with a red shadow on a pixelated image"
             loading="lazy"
           />
@@ -268,11 +288,13 @@ import Layout from '../layouts/Layout.astro';
       </article>
 
       <article>
-        <a href="/work/come-in-peace" class="border-me homepage-item" style="background-color: #54A589">
-          <img
-            width="380"
-            height="253"
-            src="/images/homepage/2H6A6270-pichi_vdlz5r.jpg"
+        <a
+          href="/work/come-in-peace"
+          class="border-me homepage-item"
+          style="background-color: #54A589"
+        >
+          <Image
+            src={comeInPeaceImg}
             alt="CRT TV shows text Peace in a graffiti font in the dark"
             loading="lazy"
           />
@@ -283,11 +305,13 @@ import Layout from '../layouts/Layout.astro';
       </article>
 
       <article>
-        <a href="/work/aerial-community-radio" class="border-me homepage-item" style="background-color: #9e96c4">
-          <img
-            width="380"
-            height="217"
-            src="/images/homepage/Screenshot_2020-10-30_at_00.28.38-pichi_y2vwxp.jpg"
+        <a
+          href="/work/aerial-community-radio"
+          class="border-me homepage-item"
+          style="background-color: #9e96c4"
+        >
+          <Image
+            src={aerialImg}
             alt="Aerial website homepage — skewed elements and text sit on top of an image of the North Sea"
             loading="lazy"
           />
@@ -296,7 +320,6 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
       </article>
-
     </div>
   </div>
 </Layout>
