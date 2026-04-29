@@ -1,0 +1,99 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const projects = await getCollection("work");
+projects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout
+  title="Selected Work"
+  description="Selected work by Jack Murray-Brown — developer, artist and radio enthusiast."
+>
+  <div class="grid grid-cols-1 lg:grid-cols-2 max-w-6xl">
+    <div class="text-col">
+      <div class="sticky top-4">
+        <h1 class="mb-4">Selected work</h1>
+        <ul id="project-list" style="list-style: none; margin: 0; padding: 0;">
+          {
+            projects.map((project) => {
+              const firstImage = project.data.media.find((m) => m.image)?.image;
+              return (
+                <li
+                  class="mb-1"
+                  data-id={project.id}
+                  data-image={firstImage?.src ?? ""}
+                  data-alt={project.data.media.find((m) => m.image)?.alt ?? ""}
+                  data-description={project.data.description}
+                  data-tags={JSON.stringify(project.data.tags.slice(0, 3))}
+                >
+                  <a href={`/work/${project.id.replace(/\.md$/, "")}`}>
+                    {project.data.title}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="hidden lg:block pl-8"
+      id="preview-panel"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <div id="preview-content" hidden>
+        <ul
+          id="preview-tags"
+          class="mb-4 list-none m-0 p-0"
+          aria-label="Project tags"
+        >
+        </ul>
+        <p id="preview-description" class="large mt-2 mb-4"></p>
+        <div class="img-wrap">
+          <img id="preview-image" src="" alt="" class="mt-4" loading="eager" />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const list = document.getElementById("project-list");
+  const panel = document.getElementById("preview-content");
+  const previewImg = document.getElementById("preview-image");
+  const previewDesc = document.getElementById("preview-description");
+  const previewTags = document.getElementById("preview-tags");
+
+  function showPreview(li) {
+    const image = li.dataset.image;
+    const alt = li.dataset.alt;
+    const description = li.dataset.description;
+    const tags = JSON.parse(li.dataset.tags || "[]");
+
+    previewImg.src = image;
+    previewImg.alt = alt;
+    previewDesc.textContent = description;
+
+    previewTags.innerHTML = tags
+      .map(
+        (tag) => `<li class="inline pill rounded-full px-4 mr-2">${tag}</li>`,
+      )
+      .join("");
+
+    panel.removeAttribute("hidden");
+  }
+
+  function hidePreview() {
+    panel.setAttribute("hidden", "");
+  }
+
+  list?.querySelectorAll("li[data-id]").forEach((li) => {
+    li.addEventListener("mouseenter", () => showPreview(li));
+    li.addEventListener("mouseleave", hidePreview);
+    li.addEventListener("focusin", () => showPreview(li));
+    li.addEventListener("focusout", hidePreview);
+  });
+</script>

@@ -1,0 +1,328 @@
+/* Tailwind v4 — import utilities only (skip preflight to use our own base styles) */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Custom design tokens */
+@theme {
+  --color-green: #00ff46;
+  --color-grey: #fefdec;
+  --color-cream: #fefdec;
+}
+
+@layer base {
+
+/* ─── Base ─────────────────────────────────────── */
+
+html,
+body {
+  background-color: #fefdec;
+}
+
+html {
+  font-family: serif;
+}
+
+body {
+  padding: 25px;
+}
+
+::-moz-selection {
+  color: black;
+  background: #00ff46;
+}
+
+::selection {
+  color: black;
+  background: #00ff46;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Focus ─────────────────────────────────────── */
+
+*:focus-visible {
+  outline: 4px solid #00ff46;
+  transition: outline 0.2s;
+}
+
+/* ─── Skip link ─────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: #00ff46;
+  color: black;
+  padding: 0.5rem 1rem;
+  z-index: 100;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 1rem;
+}
+
+/* ─── Typography ────────────────────────────────── */
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+h1,
+.h1 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+.h1-index {
+  font-size: 1.5rem;
+}
+
+h2,
+.h2,
+h3,
+a,
+button {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+p,
+details summary,
+h4,
+h5,
+li,
+span,
+ul {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+p:last-of-type {
+  margin-bottom: 0;
+}
+
+figcaption,
+.figcaption {
+  font-style: italic;
+  font-size: 1rem;
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+  font-weight: 300;
+}
+
+a:hover,
+a[aria-current="page"] {
+  background-color: #00ff46;
+}
+
+button {
+  background: #00ff46;
+  color: black;
+  border: 0;
+  padding: 20px;
+}
+
+/* ─── Utilities ─────────────────────────────────── */
+
+.text-col {
+  max-width: 600px;
+}
+
+.border-me {
+  border: 1px black solid;
+}
+
+.pill {
+  background-color: #00ff46;
+}
+
+/* ─── Details / Summary ─────────────────────────── */
+
+details {
+  padding-top: 0;
+}
+
+details > summary {
+  list-style-type: none;
+  cursor: pointer;
+  position: relative;
+}
+
+details[open] > summary {
+  list-style-type: none;
+  margin-bottom: 1rem;
+}
+
+details > summary::after {
+  content: "+";
+  width: 15px;
+  display: inline-block;
+  position: absolute;
+  bottom: 1px;
+  right: 0;
+}
+
+details > summary:hover {
+  background-color: #00ff46;
+}
+
+details[open] > summary::after {
+  content: "-";
+}
+
+/* ─── Figure ─────────────────────────────────────── */
+
+figure {
+  margin: 0 0 2.5rem;
+}
+
+/* ─── Embed / Video ─────────────────────────────── */
+
+.vid-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  margin-bottom: 2.5rem;
+}
+
+.vid-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+video {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+/* ─── Layout ─────────────────────────────────────── */
+
+@media (min-width: 1024px) {
+  .site-layout-grid {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+@media (min-width: 1536px) {
+  .site-layout-grid {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+/* ─── Header ─────────────────────────────────────── */
+
+#home-link:hover {
+  background-color: #00ff46;
+}
+
+#main-nav {
+  background-color: #fefdec;
+}
+
+@media (min-width: 1024px) {
+  #main-nav {
+    max-width: 220px;
+    display: block !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  #main-nav {
+    max-width: 280px;
+  }
+}
+
+/* ─── Homepage ───────────────────────────────────── */
+
+.homepage-item {
+  display: block;
+  text-decoration: none;
+}
+
+.homepage-item:hover {
+  background-color: inherit;
+}
+
+/* ─── Image loader ───────────────────────────────── */
+
+.img-wrap {
+  position: relative;
+  background-color: #00ff46;
+  overflow: hidden;
+  display: block;
+}
+
+.img-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: img-shimmer 1.2s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.img-wrap img,
+.img-wrap > img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.img-wrap.loaded::before {
+  animation: none;
+  display: none;
+}
+
+/* ─── Screen reader only ─────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+} /* end @layer base */
+
+@keyframes img-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}

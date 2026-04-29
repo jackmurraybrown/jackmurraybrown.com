@@ -1,0 +1,84 @@
+---
+const pathname = Astro.url.pathname;
+---
+
+<header class="lg:w-full" style="background-color: #FEFDEC;">
+  <nav
+    id="main-nav"
+    aria-label="Main navigation"
+    class="hidden w-full fixed w-screen h-screen top-0 left-0 p-8 lg:px-6 box-border z-10"
+    style="background-color: #FEFDEC;"
+  >
+    <ul class="list-none space-y-1 w-auto p-0">
+      <li>
+        <a id="home-link" class="block" href="/">Jack Murray-Brown</a>
+      </li>
+      <li>
+        <a
+          class="block"
+          href="/work"
+          aria-current={pathname.startsWith("/work") ? "page" : undefined}
+          >Selected work</a
+        >
+      </li>
+      <li>
+        <a
+          class="block"
+          href="/links"
+          aria-current={pathname === "/links" ? "page" : undefined}>Links</a
+        >
+      </li>
+      <li>
+        <a class="block" href="mailto:jack@antiantivirus.co.uk">Mail me</a>
+      </li>
+      <li>
+        <a
+          class="block"
+          href="https://www.are.na/jack-murray-brown"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Are.na<span class="sr-only"> (opens in new tab)</span></a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <div class="fixed bottom-0 left-0 w-screen p-8 box-border lg:hidden z-20">
+    <button
+      id="menu-toggle"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Open navigation menu"
+      class="w-full"
+    >
+      Menu
+    </button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle") as HTMLButtonElement;
+  const nav = document.getElementById("main-nav");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    const nowOpen = !isOpen;
+    toggle.setAttribute("aria-expanded", String(nowOpen));
+    toggle.setAttribute(
+      "aria-label",
+      nowOpen ? "Close navigation menu" : "Open navigation menu",
+    );
+    toggle.textContent = nowOpen ? "Close menu" : "Menu";
+    nav?.classList.toggle("hidden", !nowOpen);
+  });
+
+  // Close menu on navigation
+  document.addEventListener("astro:page-load", () => {
+    if (toggle && nav) {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open navigation menu");
+      toggle.textContent = "Menu";
+      nav.classList.add("hidden");
+    }
+  });
+</script>
